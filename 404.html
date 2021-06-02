@@ -17,6 +17,7 @@
       <div class="post-content"></div>
     </div>
     <script>
+      document.querySelector(".post a").onclick = (e) => goHome()
       function goHome() {document.querySelector(".post").style.display = "none"; document.querySelector(".home").style = ""}
       function loadPost(postName) {
         for (let j=0;j<posts.length;j++) {
