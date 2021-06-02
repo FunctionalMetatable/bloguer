@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>blog</title>
+    <style>
+      body {font-family: 'Helvetica Neue', Helvetica; margin-left: 20.5px;};
+    </style>
+  </head>
+  <body>
+    <div class="home">
+      <h2>welcome to the blog</h2>
+    </div>
+    <div class="post" style="display: none;">
+      <a href="#">back to home</a>
+      <h2></h2>
+      <div class="post-content"></div>
+    </div>
+    <script>
+      function goHome() {document.querySelector(".post").style.display = "none"; document.querySelector(".home").style = ""}
+      function loadPost(postName) {
+        for (let j=0;j<posts.length;j++) {
+          if (posts[j].title == postName) {
+            document.querySelector(".post-content").innerHTML = posts[j].html;
+            document.querySelector(".post").style.display = "";
+            document.querySelector(".post h2").innerText = posts[j].title;
+            document.querySelector(".home").style = "display: none;";
+            break
+          }
+        }
+      }
+      let posts = [{
+        title: "hello world",
+        html: "hi this is my blog.<br />the only thing good about this is<br /><marquee scrollamount=\"70\">yes</marquee><br />ill add some epic content soon yay"
+      }]
+      let searchParams = new URLSearchParams(window.location.search)
+      
+      if (searchParams.get("post")) {
+        loadPost(searchParams.get("post"))
+      } else {
+        goHome()
+        
+      }
+      
+      for (let j=0;j<posts.length;j++) {
+        let link = document.createElement("a");
+        link.href = "#";
+        link.onclick = (e) => {
+          loadPost(posts[j].title)
+        }
+        link.innerHTML = posts[j].title
+      }
+  </body>
+</html>
